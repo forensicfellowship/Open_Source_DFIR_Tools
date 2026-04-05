@@ -1,4 +1,4 @@
-# Open-Source DFIR Tools Reference
+# Open Source DFIR Tools Reference
 
 > A curated reference catalog of open-source Digital Forensics & Incident Response (DFIR) tools, organized by discipline. Maintained as a living reference for practitioners, researchers, and students.
 
