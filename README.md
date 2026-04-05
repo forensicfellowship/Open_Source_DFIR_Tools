@@ -28,6 +28,12 @@
 16. [OSINT & Reconnaissance](#16-osint--reconnaissance)
 17. [Forensic Distributions & Workstations](#17-forensic-distributions--workstations)
 18. [Reporting & Case Management](#18-reporting--case-management)
+19. [macOS Forensics](#19-macos-forensics)
+20. [Browser & Internet Artifact Forensics](#20-browser--internet-artifact-forensics)
+21. [Docker & Container Forensics](#21-docker--container-forensics)
+22. [Steganography & Image Forensics](#22-steganography--image-forensics)
+23. [Password Recovery & Decryption](#23-password-recovery--decryption)
+24. [Scripting Frameworks & Lightweight IR](#24-scripting-frameworks--lightweight-ir)
 
 ---
 
@@ -380,6 +386,108 @@ Tools for documenting investigations, tracking case progress, and generating for
 
 ---
 
+## 19. macOS Forensics
+
+Tools for collecting and analyzing forensic artifacts from macOS systems — an underserved category in most IR toolkits.
+
+| Tool | Description | Language |
+|------|-------------|----------|
+| [mac_apt](https://github.com/ydkhatri/mac_apt) | macOS (& iOS) Artifact Parsing Tool by Yogesh Khatri. Plugin-based framework that processes full disk images or live macs, extracting Safari history, network interfaces, recently accessed files, plist data, and 60+ artifact types. | Python |
+| [OSXCollector](https://github.com/Yelp/osxcollector) | Yelp's forensic evidence collection and analysis toolkit for macOS. Collects system info, browser history, accounts, processes, and packages — outputs normalized JSON for downstream analysis. | Python |
+| [Aftermath](https://github.com/jamf/aftermath) | Jamf's open-source macOS post-compromise forensics tool. Collects volatile and non-volatile system state for rapid incident scoping — focused on speed and low footprint. | Swift |
+| [APOLLO](https://github.com/mac4n6/APOLLO) | Apple Pattern of Life Lazy Output'er by Sarah Edwards (mac4n6). Queries the KnowledgeC, PowerLog, and other Apple databases to reconstruct user activity timelines on macOS and iOS. | Python |
+| [MacRipper](https://github.com/Recruit-CSIRT/MacRipper) | Recruit-CSIRT's macOS artifact parsing tool. Extracts and structures key forensic artifacts from offline macOS images. | Python |
+| [osxcollector-output-filters](https://github.com/Yelp/osxcollector) | Post-processing filters for OSXCollector output. Enriches results with VirusTotal, OpenDNS, and other threat intel sources for rapid triage. | Python |
+| [mac_robber](https://github.com/sleuthkit/mac_robber) | Part of The Sleuth Kit. Collects MAC (Modified/Accessed/Changed) time data from live macOS filesystems for timeline generation. | C |
+| [macOS-Artifact-Parsing](https://github.com/mac4n6/APOLLO) | Collection of scripts from the mac4n6 project for parsing Apple-specific plist, database, and log artifact formats. | Python |
+
+---
+
+## 20. Browser & Internet Artifact Forensics
+
+Tools for recovering and analyzing web browsing history, cache, cookies, and internet artifacts across all major browsers.
+
+| Tool | Description | Language |
+|------|-------------|----------|
+| [hindsight](https://github.com/obsidianforensics/hindsight) | Chrome/Chromium history forensics tool by Obsidian Forensics. Parses URLs, downloads, cache records, bookmarks, autofill, saved passwords, extensions, cookies, and Local Storage from Chrome profiles — outputs CSV, SQLite, or XLSX. | Python |
+| [dumpzilla](https://github.com/Busindre/dumpzilla) | Firefox forensics tool. Extracts history, downloads, bookmarks, cookies, form data, saved passwords, add-ons, and cache from Firefox/Thunderbird profiles. | Python |
+| [BrowserHistory](https://github.com/browser-history/browser-history) | Cross-browser Python library and CLI for extracting unified history from Chrome, Firefox, Safari, Edge, Opera, and Brave — outputs JSON/CSV. | Python |
+| [unfurl](https://github.com/obsidianforensics/unfurl) | URL forensics tool that decodes and visualizes encoding layers, timestamps, and tracking parameters embedded in complex URLs — useful for campaign attribution and URL artifact triage. | Python |
+| [ChromeCache](https://github.com/nicowillis/chromecache) | Extracts and decodes Google Chrome's network cache files. Recovers cached web pages, scripts, and images from Chrome cache directories. | Python |
+| [firefoxforensics](https://github.com/libyal/dtformats/blob/main/documentation/Mozilla%20Firefox%20Places.asciidoc) | Documentation and format specifications for parsing Mozilla Firefox Places (places.sqlite) — core browser history database. | Docs |
+| [bstrings](https://github.com/EricZimmerman/bstrings) | EZ Tools string extraction utility. Useful for pulling URLs, email addresses, and other artifacts from browser database blobs and cache files. | C# |
+
+---
+
+## 21. Docker & Container Forensics
+
+Tools for investigating incidents involving containerized environments and Docker host systems.
+
+| Tool | Description | Language |
+|------|-------------|----------|
+| [dof (Docker Forensics Toolkit)](https://github.com/docker-forensics-toolkit/toolkit) | Extracts and interprets forensic artifacts from disk images of Docker Host systems. Parses container metadata, image layers, volumes, and network configuration. | Python |
+| [docker-explorer](https://github.com/google/docker-explorer) | Google's tool for offline forensic analysis of Docker filesystems. Mounts and traverses container overlay filesystems to recover files and metadata without a running Docker daemon. | Python |
+| [whaler](https://github.com/P3GLEG/Whaler) | Reverse-engineers Docker images back to approximate Dockerfiles. Useful for identifying malicious images and understanding container build history. | Go |
+| [dive](https://github.com/wagoodman/dive) | Tool for exploring Docker image layers. Identifies what changed between layers — useful for detecting malicious layer injections or data exfiltration staged in image layers. | Go |
+| [Trivy](https://github.com/aquasecurity/trivy) | Aqua Security's container vulnerability and misconfiguration scanner. Scans container images, filesystems, and Kubernetes clusters for CVEs, secrets, and SBOM data during IR. | Go |
+| [Falco](https://github.com/falcosecurity/falco) | CNCF runtime security tool for containers and Kubernetes. Detects anomalous behavior (unexpected processes, file access, network activity) in real time using eBPF/kernel module sensors. | C++ |
+
+---
+
+## 22. Steganography & Image Forensics
+
+Tools for detecting hidden data in files and performing forensic analysis of digital images.
+
+| Tool | Description | Language |
+|------|-------------|----------|
+| [StegoVeritas](https://github.com/bannsec/stegoVeritas) | Automated steganography analysis tool. Runs a battery of stego detection techniques against images — LSB extraction, metadata analysis, color channel manipulation, and more. | Python |
+| [zsteg](https://github.com/zed-0xff/zsteg) | Detects LSB (Least Significant Bit) steganography in PNG and BMP files. Supports multiple bit planes and channel combinations — standard tool for CTF and investigation. | Ruby |
+| [steghide](https://github.com/StefanoDeVuono/steghide) | Embeds and extracts hidden data in JPEG, BMP, WAV, and AU files. Commonly used by threat actors — relevant for detecting covert exfiltration channels. | C++ |
+| [stegsolve](https://github.com/zardus/ctf-tools/tree/master/stegsolve) | Java-based image steganography tool. Applies bitplane and color channel filters to reveal hidden content. Widely used in CTF and image forensics workflows. | Java |
+| [Ghiro](https://github.com/Ghirensics/ghiro) | Automated digital image forensics platform. Analyzes images for metadata, GPS coordinates, EXIF anomalies, hash lookups, error level analysis (ELA), and steganographic content via a web UI. | Python |
+| [sherloq](https://github.com/GuidoBartoli/sherloq) | Open-source digital photographic image forensic toolset. Covers metadata analysis, compression artifacts, noise analysis, cloning detection, and ELA — designed for image authenticity investigations. | Python/C++ |
+| [exiftool](https://github.com/exiftool/exiftool) | Comprehensive metadata extraction tool supporting 100+ file formats. Extracts GPS, device identifiers, authorship, timestamps, and embedded data from photos, documents, and media files. | Perl |
+| [stego-toolkit](https://github.com/DominicBreuker/stego-toolkit) | Docker image bundling 20+ steganography tools (steghide, outguess, jsteg, zsteg, etc.) for analysis and extraction — popular CTF and forensics environment. | Docker |
+| [outguess](https://github.com/crorvick/outguess) | Universal steganographic tool that hides data in JPEG images while preserving statistical properties to resist detection. | C |
+
+---
+
+## 23. Password Recovery & Decryption
+
+Tools for recovering passwords and decrypting artifacts commonly encountered during DFIR investigations.
+
+| Tool | Description | Language |
+|------|-------------|----------|
+| [hashcat](https://github.com/hashcat/hashcat) | World's fastest GPU-accelerated password recovery tool. Supports 300+ hash types including NTLM, Kerberos, bcrypt, and disk encryption keys (LUKS, VeraCrypt, BitLocker). Essential for credential triage. | C |
+| [John the Ripper](https://github.com/openwall/john) | Classic open-source password cracker. CPU-optimized with support for 100+ hash formats. Jumbo community edition adds ZIP, RAR, PDF, Office, and disk image password cracking. | C |
+| [CyberChef](https://github.com/gchq/CyberChef) | GCHQ's "Cyber Swiss Army Knife." 300+ operations for encoding, decoding, encryption, compression, hashing, and data transformation — essential for decoding obfuscated artifacts without writing code. | JavaScript |
+| [LaZagne](https://github.com/AlessandroZ/LaZagne) | Credential recovery tool for Windows, Linux, and macOS. Extracts stored passwords from browsers, email clients, databases, Git, WiFi, and 80+ applications — mirrors attacker credential harvesting. | Python |
+| [mimikatz](https://github.com/gentilkiwi/mimikatz) | Windows credential extraction tool. Dumps LSASS memory for plaintext passwords, NTLM hashes, and Kerberos tickets. Core to understanding credential-based lateral movement during IR. | C |
+| [impacket](https://github.com/fortra/impacket) | Fortra's Python library for working with Windows network protocols. Includes secretsdump.py for remote/offline SAM and NTDS.dit extraction — critical for AD compromise investigations. | Python |
+| [VeraCrypt](https://github.com/veracrypt/VeraCrypt) | Open-source disk encryption. Relevant for DFIR practitioners encountering encrypted volumes — supports mounting with recovered keys/passwords for forensic access. | C/C++ |
+| [bitlocker-decryptor](https://github.com/libyal/libbde) | libyal's BitLocker Drive Encryption library. Enables mounting and decrypting BitLocker volumes using recovery keys, passwords, or BEK files during forensic analysis. | C |
+
+---
+
+## 24. Scripting Frameworks & Lightweight IR
+
+Modular scripting frameworks and lightweight scanners for rapid, low-dependency IR at scale.
+
+| Tool | Description | Language |
+|------|-------------|----------|
+| [Kansa](https://github.com/davehull/Kansa) | Dave Hull's modular PowerShell incident response framework. Collects and analyzes data across Windows environments — process trees, autoruns, network connections, and event log parsing at fleet scale. | PowerShell |
+| [rastrea2r](https://github.com/rastrea2r/rastrea2r) | Cross-platform YARA-based IOC scanner for disks and memory. Runs on Windows, Linux, and macOS — supports scanning remote systems via REST API for distributed IR. | Python |
+| [Fenrir](https://github.com/Neo23x0/Fenrir) | Florian Roth's simple bash IOC scanner for Linux/macOS/Unix. No dependencies — scans for file hashes, strings, and filename patterns from a plain-text IOC list. | Bash |
+| [CHIRP](https://github.com/cisagov/CHIRP) | CISA's IOC Detection Tool. Built in response to SolarWinds/SUNBURST to scan Windows systems for attacker TTPs across registry, filesystem, event logs, and WMI subscriptions. | Python |
+| [CIRTkit](https://github.com/opensourcesec/CIRTKit) | Framework for unifying Incident Response and forensics investigation workflows. Provides a modular, extensible base for building organization-specific IR automation. | Python |
+| [ArtifactExtractor](https://github.com/Silv3rHorn/ArtifactExtractor) | Extracts common Windows forensic artifacts from source images and VSCs (Volume Shadow Copies) in a structured, automated manner. | Python |
+| [Loki](https://github.com/Neo23x0/Loki) | IOC and YARA scanner by Florian Roth. Scans filesystems, processes, and memory dumps for known malware indicators, suspicious file names, and hacker tools across Windows, Linux, and macOS. | Python |
+| [IRIS-web](https://github.com/dfir-iris/iris-web) | DFIR-IRIS collaborative investigation platform. Provides case management, timeline reconstruction, IOC tracking, and evidence management — designed for multi-analyst IR engagements. | Python |
+| [Kuiper](https://github.com/DFIRKuiper/Kuiper) | DFIR investigation platform with built-in timeline analysis, case management, and artifact parsing across collected evidence. Complements TheHive for large-scale investigations. | Python |
+| [FLARE VM](https://github.com/mandiant/flare-vm) | Mandiant's Windows-based malware analysis and reverse engineering distribution. Complements REMnux — installs 70+ tools (x64dbg, Ghidra, FLOSS, PE-bear, Wireshark) on a Windows VM via Chocolatey. | PowerShell |
+
+---
+
 ## Contributing
 
 Pull requests are welcome. When adding a tool, please include:
@@ -397,4 +505,4 @@ Tools in this repository are intended for **lawful forensic investigations, inci
 
 *Maintained by [Bryan Ambrose](https://github.com/bryan-ambrose) | D.Sc. Cybersecurity | Security Engineer II, AWS | GCFA · GCFR · OSCP*
 
-*Last updated: April 2026*
+*Last updated: April 2026 | v2.0 — expanded to 24 categories*
