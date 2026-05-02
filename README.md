@@ -503,6 +503,6 @@ Tools in this repository are intended for **lawful forensic investigations, inci
 
 ---
 
-*Maintained by [Bryan Ambrose](https://github.com/bryan-ambrose) | D.Sc. Cybersecurity | Security Engineer II, AWS | GCFA · GCFR · OSCP*
+*Maintained by [Bryan Ambrose](https://github.com/bryan-ambrose) | Cybersecurity | Security Engineer II, AWS | GCFA · GCFR · OSCP*
 
 *Last updated: April 2026 | v2.0 — expanded to 24 categories*
